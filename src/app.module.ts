@@ -1,3 +1,4 @@
+import { ArtistController } from './artist/artist.controller';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -7,6 +8,12 @@ import { SongsModule } from './songs/songs.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Song } from './songs/entities/song.entity';
+import { ArtistModule } from './artist/artist.module';
+import { UserModule } from './user/user.module';
+import { Artist } from './artist/entities/artist.entity';
+import { User } from './user/entities/user.entity';
+import { PlaylistModule } from './playlist/playlist.module';
+import { Playlist } from './playlist/entities/playlist.entity';
 
 @Module({
   imports: [
@@ -17,12 +24,15 @@ import { Song } from './songs/entities/song.entity';
       port: 5432,
       username: 'postgres',
       password: 'enfin123',
-      entities: [Song],
+      entities: [Song, Artist, User, Playlist],
       synchronize: true,
     }),
     SongsModule,
+    ArtistModule,
+    UserModule,
+    PlaylistModule,
   ],
-  controllers: [AppController],
+  controllers: [ArtistController, AppController],
   providers: [AppService],
 })
 export class AppModule {
