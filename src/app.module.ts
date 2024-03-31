@@ -14,12 +14,13 @@ import { Artist } from './artist/entities/artist.entity';
 import { User } from './user/entities/user.entity';
 import { PlaylistModule } from './playlist/playlist.module';
 import { Playlist } from './playlist/entities/playlist.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      database: 'SpotifyClone',
+      database: 'Spotify-Clone',
       host: 'localhost',
       port: 5432,
       username: 'postgres',
@@ -31,6 +32,7 @@ import { Playlist } from './playlist/entities/playlist.entity';
     ArtistModule,
     UserModule,
     PlaylistModule,
+    AuthModule,
   ],
   controllers: [ArtistController, AppController],
   providers: [AppService],
